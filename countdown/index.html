@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Londrina+Solid:wght@300;400;900&family=Yusei+Magic&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/220bbdbf50.js" crossorigin="anonymous"></script>
+    <title>Pomodoro</title>
+</head>
+<body>
+<main class="main">
+    <div class="navbar">
+        <h1 class="navbar__title">Pomodoro</h1>
+        <nav class="navbar__nav">
+            <ul class="navbar__list">
+                <li class="navbar__item">
+                    <a href="../index.html" class="navbar__link">Back to info</a>
+                </li>
+              
+            </ul>
+        </nav>
+    </div>
+    <section class="pomodoro">
+        <div class="pomodoro__wrapper">
+            <div class="pomodoro__stage">
+              <input type="radio" name="current" class="pomodoro__stage--selection" value="pomodoro" id="pomodoro" checked>
+              <label for="pomodoro" id="pomodoro__label" class="pomodoro__stage--label">Pomodoro</label>
+              <input type="radio" name="current" class="pomodoro__stage--selection" value="short" id="short">
+              <label for="short" id="short__label" class="pomodoro__stage--label">Short break</label>
+              <input type="radio" name="current" class="pomodoro__stage--selection" value="long" id="long">
+              <label for="long" id="long__label" class="pomodoro__stage--label">Long break</label>
+            </div>
+            <div class="pomodoro__count">
+               <div class="pomodoro__ring">
+                  <svg viewBox="0 0 100 100">
+                    <circle id="ring" class="pomodoro__ring--animate"  cx="50" cy="50" r="40">
+                    </circle>
+                  </svg>
+                </div>
+                <div class="countdown">
+                  <input type="checkbox" id="pause" class="countdown__input" />
+                  <div class="countdown__time" id="time">25:00</div>
+                  <label for="pause" id="pause__label" class="countdown__state">start</label>
+                </div>
+            </div>
+            <div class="pomodoro__settings">
+              <button type="button" class="pomodoro__settings--btn"><span class="fas fa-cogs pomodoro__settings--link"></span></button>
+            </div>
+          </div>
+    </section>
+</main>
+
+</body>
+</html>

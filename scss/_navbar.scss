@@ -1,0 +1,39 @@
+.navbar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+
+    &__title {
+        margin-left: 1rem;
+        color: lighten($gold, 20%);
+        letter-spacing: 1px;
+        font-size: 2em;
+        font-family: $title;
+    }
+
+    &__list {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        margin-right: 1rem;
+        list-style-type: none;
+    }
+
+    &__item {
+        margin-left: 2rem;
+        font-size: 1.2em;
+        text-transform: lowercase;
+    }
+
+    &__link {
+        text-decoration: none;
+        color: lighten($gold, 20%);
+
+        &:hover {
+            border-bottom: 2px dotted $gold;
+        }
+    }
+}
