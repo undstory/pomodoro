@@ -40,6 +40,7 @@
         background-color: $gold;
         margin-top: 2rem;
         margin-bottom: 2rem;
+    
     }
 
     &__ring {
@@ -64,7 +65,9 @@
         }
     }
 
-    &__settings {
+  
+
+    &__settings, &__play {
         margin-top: 2rem;
 
         &--btn {
@@ -82,6 +85,10 @@
             font-size: 3em;
             color: $gold;
         }
+    }
+
+    &__play--link {
+        color: $gold;
     }
 }
 
@@ -115,6 +122,11 @@
         font-weight: bold;
         cursor:  pointer;
     }
+}
+
+.disabled {
+    opacity: .4;
+    cursor: not-allowed;
 }
 
 .animate {

@@ -7,6 +7,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Londrina+Solid:wght@300;400;900&family=Yusei+Magic&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/220bbdbf50.js" crossorigin="anonymous"></script>
+    <script src="../scripts/scripts.js" async defer></script>
     <title>Pomodoro</title>
 </head>
 <body>
@@ -42,8 +43,12 @@
                 <div class="countdown">
                   <input type="checkbox" id="pause" class="countdown__input" />
                   <div class="countdown__time" id="time">25:00</div>
-                  <label for="pause" id="pause__label" class="countdown__state">start</label>
+                  <label for="pause" id="pause__label" class="countdown__state">pause</label>
                 </div>
+            </div>
+            <div class="pomodoro__play">
+              <button type="button" class="pomodoro__play--btn"><span class="fas fa-play pomodoro__play--link"></span></button>
+
             </div>
             <div class="pomodoro__settings">
               <button type="button" class="pomodoro__settings--btn"><span class="fas fa-cogs pomodoro__settings--link"></span></button>
