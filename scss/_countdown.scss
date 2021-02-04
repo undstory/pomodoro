@@ -67,7 +67,7 @@
 
   
 
-    &__settings, &__play {
+    &__settings, &__play, &__stop {
         margin-top: 2rem;
 
         &--btn {
@@ -88,6 +88,10 @@
     }
 
     &__play--link {
+        color: $gold;
+    }
+
+    &__stop--link {
         color: $gold;
     }
 }

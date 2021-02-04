@@ -3,7 +3,14 @@ let state = {
     seconds: [1500, 300, 900],
     names: ['pomodoro', 'short break', 'long break'],
     pomodoroCount: 0,
-    pause: false
+    pause: false,
+    start: false
+}
+
+let settings = {
+    pomodoroSettingsBtn: document.querySelector('.pomodoro__settings--link'),
+    box: document.querySelector('.settings'),
+    closeBtn: document.querySelector('.settings__close--link')
 }
 
 const typicalPomodoro = {
@@ -14,11 +21,19 @@ const typicalPomodoro = {
 
 document.addEventListener('keydown', (e)=> {
     if (e.key === 'q') {
-        state.seconds = [15,3,9]; 
-        typicalPomodoro.pomodoro = 15; 
-        typicalPomodoro.shortBreak = 3; 
-        typicalPomodoro.longBreak = 9; 
+        state.seconds = [5,2,4]; 
+        typicalPomodoro.pomodoro = 5; 
+        typicalPomodoro.shortBreak = 2; 
+        typicalPomodoro.longBreak = 4; 
     }
+})
+
+settings.pomodoroSettingsBtn.addEventListener('click', () => {
+    settings.box.classList.remove('off');
+})
+
+settings.closeBtn.addEventListener('click', () => {
+    settings.box.classList.add('off');
 })
 
 const display = {
@@ -30,7 +45,8 @@ const display = {
     readoutTime : document.querySelector('.countdown__time'),
     pause : document.querySelector('#pause'),
     pauseLabel : document.querySelector('#pause__label'),
-    playBtn: document.querySelector('.pomodoro__play--link')
+    playBtn: document.querySelector('.pomodoro__play--link'),
+    stopBtn: document.querySelector('.pomodoro__stop--btn')
 }
 
 display.pause.addEventListener('change', () => {
@@ -42,6 +58,8 @@ display.pause.addEventListener('change', () => {
         display.pauseLabel.textContent = 'pause'
     }
 })
+
+
 
 display.current.forEach(el => {
     el.addEventListener('click', (e)=> {
@@ -73,47 +91,66 @@ function updateDisplay(state) {
 
 display.playBtn.addEventListener('click', () => {
     display.playBtn.classList.add("disabled");
-    setInterval(() => {
+    
+    state.start = true;
+
+    const counter = setInterval(() => {
         const og = Object.values(typicalPomodoro);
-        console.log(og);
+
         updateDisplay(state);
     
-        if (!state.pause) {
-            switch (true) {
-                case state.seconds[state.current] > 0 : 
-                    state.seconds[state.current] -- ;
-                    break; 
-                case state.seconds[state.current] === 0 && state.current === 0 && state.pomodoroCount < 4 :
-                    state.pomodoroCount ++;
-                    state.current = 1; 
-                    state.seconds = og;
-                  
-                    break;
-                case state.seconds[state.current] === 0 && state.current === 1 : 
-                    state.current = 0; 
-                    state.seconds = og;
-                   
+        if (state.start) {
+
+            if(!state.pause) {
+                switch (true) {
+                    case state.seconds[state.current] > 0 : 
+                        state.seconds[state.current] -- ;
+                        break; 
+                    case state.seconds[state.current] === 0 && state.current === 0 && state.pomodoroCount < 4 :
+                        state.pomodoroCount ++;
+                        state.current = 1; 
+                        state.seconds = og;
+                      
+                        break;
+                    case state.seconds[state.current] === 0 && state.current === 1 : 
+                        state.current = 0; 
+                        state.seconds = og;
+                       
+                        
+                        break; 
+                    case state.seconds[state.current] === 0 && state.current === 0 && state.pomodoroCount === 4 : 
+                        state.current = 2; 
+                        state.seconds = og;
                     
-                    break; 
-                case state.seconds[state.current] === 0 && state.current === 0 && state.pomodoroCount === 4 : 
-                    state.current = 2; 
-                    state.seconds = og;
-                
-                    
-                    break; 
-                case state.seconds[state.current] === 0 && state.current === 2 :
-                    state.pomodoroCount = 0;
-                    state.seconds = og; 
-                    state.current = 0; 
-           
-                    
-                    break;    
-            }
+                        
+                        break; 
+                    case state.seconds[state.current] === 0 && state.current === 2 :
+                        state.pomodoroCount = 0;
+                        state.seconds = og; 
+                        state.current = 0; 
+                        state.seconds[state.current];
     
+                        clearInterval(counter)
+                        
+                        display.playBtn.classList.remove("disabled");
+                        break;    
+                }
+            }
+            
+    
+        } else {
+            clearInterval(counter)
         }
     
     
     }, 1000);
-    display.playBtn.classList.add("disabled");
+    
 })
 
+display.stopBtn.addEventListener('click', () => {
+    state.start = false;
+    display.playBtn.classList.remove('disabled');
+    state.current = 0;
+    state.seconds[state.current] = Object.values(typicalPomodoro)[state.current];
+    display.readoutTime.textContent = secondsToString(state.seconds[state.current]);
+})
