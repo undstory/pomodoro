@@ -1,3 +1,4 @@
+
 let state = {
     current: 0,
     seconds: [1500, 300, 900],
@@ -10,7 +11,11 @@ let state = {
 let settings = {
     pomodoroSettingsBtn: document.querySelector('.pomodoro__settings--link'),
     box: document.querySelector('.settings'),
-    closeBtn: document.querySelector('.settings__close--link')
+    closeBtn: document.querySelector('.settings__close--link'),
+    applyBtn: document.querySelector('.settings__apply--btn'),
+    pomodoroChoice: document.querySelector('#pomodoro__time'),
+    shortBreakChoice: document.querySelector('#short__break'),
+    longBreakChoice: document.querySelector('#long__break')
 }
 
 const typicalPomodoro = {
@@ -59,8 +64,6 @@ display.pause.addEventListener('change', () => {
     }
 })
 
-
-
 display.current.forEach(el => {
     el.addEventListener('click', (e)=> {
         e.preventDefault()
@@ -73,6 +76,36 @@ function secondsToString(time) {
     if(seconds < 10) seconds = `0${seconds}`;
     return `${minutes}:${seconds}`
 }
+
+function getSettings() {
+    return {
+        seconds: [settings.pomodoroChoice.value *60, settings.shortBreakChoice.value *60, settings.longBreakChoice.value*60]
+    }
+}
+
+function updateSettings(choice) {
+    for (const property in choice) {
+        if (property in state) {
+            state[property] = choice[property]; 
+        }
+    };
+    typicalPomodoro.pomodoro = choice.seconds[0]; 
+    typicalPomodoro.shortBreak = choice.seconds[1]; 
+    typicalPomodoro.longBreak = choice.seconds[2]; 
+}
+
+settings.applyBtn.addEventListener('click', () => {
+
+    const newSettings = getSettings();
+
+    updateSettings(newSettings);
+
+    updateDisplay(state);
+
+    settings.box.classList.add('off');
+
+})
+
 
 function updateDisplay(state) {
     for (let i=0; i<3; i++) {
@@ -105,8 +138,9 @@ display.playBtn.addEventListener('click', () => {
                 switch (true) {
                     case state.seconds[state.current] > 0 : 
                         state.seconds[state.current] -- ;
+                        audio.song.play();
                         break; 
-                    case state.seconds[state.current] === 0 && state.current === 0 && state.pomodoroCount < 4 :
+                    case state.seconds[state.current] === 0 && state.current === 0 && state.pomodoroCount < 3 :
                         state.pomodoroCount ++;
                         state.current = 1; 
                         state.seconds = og;
@@ -118,7 +152,7 @@ display.playBtn.addEventListener('click', () => {
                        
                         
                         break; 
-                    case state.seconds[state.current] === 0 && state.current === 0 && state.pomodoroCount === 4 : 
+                    case state.seconds[state.current] === 0 && state.current === 0 && state.pomodoroCount === 3 : 
                         state.current = 2; 
                         state.seconds = og;
                     
@@ -133,6 +167,7 @@ display.playBtn.addEventListener('click', () => {
                         clearInterval(counter)
                         
                         display.playBtn.classList.remove("disabled");
+                        document.title = `End of cycle`
                         break;    
                 }
             }
@@ -150,6 +185,7 @@ display.playBtn.addEventListener('click', () => {
 display.stopBtn.addEventListener('click', () => {
     state.start = false;
     display.playBtn.classList.remove('disabled');
+    state.pomodoroCount = 0;
     state.current = 0;
     state.seconds[state.current] = Object.values(typicalPomodoro)[state.current];
     display.readoutTime.textContent = secondsToString(state.seconds[state.current]);
