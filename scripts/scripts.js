@@ -41,14 +41,6 @@ const typicalPomodoro = {
     longBreak: 900,
 }
 
-document.addEventListener('keydown', (e)=> {
-    if (e.key === 'q') {
-        state.seconds = [5,2,4]; 
-        typicalPomodoro.pomodoro = 5; 
-        typicalPomodoro.shortBreak = 2; 
-        typicalPomodoro.longBreak = 4; 
-    }
-})
 
 settings.pomodoroSettingsBtn.addEventListener('click', () => {
     settings.box.classList.remove('off');
