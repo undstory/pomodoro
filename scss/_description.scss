@@ -1,0 +1,68 @@
+.description {   
+    padding: 3rem 2rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    column-gap: 5%;
+    row-gap: 5%;
+    justify-items: start;
+    align-items: start;
+    line-height: 1.8;
+    font-size: 1.1em;
+    width: 100%;
+    margin: 0 auto;
+
+    &__box {
+        &--1 {
+            background-color: $goldest;
+            color: lighten($gold, 20%);
+            grid-column: 1/2;
+            grid-row: 1/2;
+            padding: 3rem 1rem;
+        }
+
+        &--2 {
+            background-color: $greenest;
+            color: lighten($gold, 20%);
+            grid-column: 2/3;
+            grid-row: 1 / span 2;
+            padding: 1rem 1rem 2rem 2rem;
+        }
+    }
+
+    &__details {
+        text-align: left;
+        margin: 2rem 0;  
+    }
+}
+
+.forwarding {
+    grid-column: 1 / 2;
+    grid-row: 2/3;
+    justify-self: center;
+    align-self: start;
+
+    &__title {
+        place-self: center;
+        text-align: center;
+        margin: 0 auto;
+    }
+    &__btn {
+        background-color: $gold;
+        color: $greenest;
+        padding: .8rem 1.5rem;
+        font-size: 1.2em;
+        font-weight: bold;
+        border: none;
+        cursor: pointer;
+    }
+
+    &__link {
+        text-decoration: none;
+        color: inherit;
+    }
+}
+
+.decor {
+    border-bottom: 2px dotted $gold;
+}

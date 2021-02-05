@@ -1,3 +1,20 @@
+// signals 
+
+const startworking = new Audio(
+    "startworking.mp3"
+)
+
+const shortbreak = new Audio(
+    "shortbreak.mp3"
+)
+
+const longbreak = new Audio(
+    "longbreak.mp3"
+)
+
+const end = new Audio(
+    "endofcycle.mp3"
+)
 
 let state = {
     current: 0,
@@ -138,9 +155,9 @@ display.playBtn.addEventListener('click', () => {
                 switch (true) {
                     case state.seconds[state.current] > 0 : 
                         state.seconds[state.current] -- ;
-                        audio.song.play();
                         break; 
                     case state.seconds[state.current] === 0 && state.current === 0 && state.pomodoroCount < 3 :
+                        shortbreak.play();
                         state.pomodoroCount ++;
                         state.current = 1; 
                         state.seconds = og;
@@ -149,13 +166,13 @@ display.playBtn.addEventListener('click', () => {
                     case state.seconds[state.current] === 0 && state.current === 1 : 
                         state.current = 0; 
                         state.seconds = og;
-                       
+                        startworking.play();
                         
                         break; 
                     case state.seconds[state.current] === 0 && state.current === 0 && state.pomodoroCount === 3 : 
                         state.current = 2; 
                         state.seconds = og;
-                    
+                        longbreak.play();
                         
                         break; 
                     case state.seconds[state.current] === 0 && state.current === 2 :
@@ -165,10 +182,11 @@ display.playBtn.addEventListener('click', () => {
                         state.seconds[state.current];
     
                         clearInterval(counter)
-                        
+                        end.play();
                         display.playBtn.classList.remove("disabled");
-                        document.title = `End of cycle`
-                        break;    
+                        document.title = `End of cycle`;
+                        break;  
+                         
                 }
             }
             
@@ -179,6 +197,7 @@ display.playBtn.addEventListener('click', () => {
     
     
     }, 1000);
+    
     
 })
 

@@ -12,11 +12,20 @@ html {
 body {
     background-color: $greener;
     font-family: $text;
+    
 }
 
 .main {
     max-width: 1920px; 
     margin: 0 auto;
     position: relative;
+}
+
+
+
+footer {
+    text-align: right;
+    color: $gold;
+    
 }
 
