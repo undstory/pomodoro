@@ -55,6 +55,7 @@
         font-weight: bold;
         border: none;
         cursor: pointer;
+        margin-bottom: 2rem;
     }
 
     &__link {
@@ -65,4 +66,39 @@
 
 .decor {
     border-bottom: 2px dotted $gold;
+}
+
+@media all and (max-width: 768px) {
+    .description {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto auto;
+        row-gap: 5%;
+
+        &__box {
+            &--1 {
+                grid-column: 1 / 2;
+                grid-row: 1 / 2;
+            }
+
+            &--2 {
+                grid-column: 1 / 2;
+                grid-row: 2 / 3;
+            }
+        }
+    }
+
+    .forwarding {
+        grid-column: 1 / 2;
+        grid-row: 3 / 4;
+
+        &__btn {
+            margin-bottom: 4rem;
+        }
+    }
+}
+
+@media all and (max-width: 505px) {
+    .description {
+        font-size: 1em;
+    }
 }

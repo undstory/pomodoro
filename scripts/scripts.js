@@ -1,19 +1,19 @@
 // signals 
 
 const startworking = new Audio(
-    "startworking.mp3"
+    "../assets/audio/startworking.mp3"
 )
 
 const shortbreak = new Audio(
-    "shortbreak.mp3"
+    "../assets/audio/shortbreak.mp3"
 )
 
 const longbreak = new Audio(
-    "longbreak.mp3"
+    "../assets/audio/longbreak.mp3"
 )
 
 const end = new Audio(
-    "endofcycle.mp3"
+    "../assets/audio/endofcycle.mp3"
 )
 
 let state = {
@@ -132,9 +132,9 @@ function updateDisplay(state) {
 
     display.readoutTime.textContent = secondsToString(state.seconds[state.current]);
 
-    const og = Object.values(typicalPomodoro)[state.current];
+    const val = Object.values(typicalPomodoro)[state.current];
     const cur = state.seconds[state.current];
-    display.countdownRing.style.strokeDashoffset = 250 - ((cur/og)*250);
+    display.countdownRing.style.strokeDashoffset = 250 - ((cur/val)*250);
 
     document.title = `${state.names[state.current]} : ${secondsToString(state.seconds[state.current])}`
 }
@@ -145,7 +145,7 @@ display.playBtn.addEventListener('click', () => {
     state.start = true;
 
     const counter = setInterval(() => {
-        const og = Object.values(typicalPomodoro);
+        const val = Object.values(typicalPomodoro);
 
         updateDisplay(state);
     
@@ -160,24 +160,24 @@ display.playBtn.addEventListener('click', () => {
                         shortbreak.play();
                         state.pomodoroCount ++;
                         state.current = 1; 
-                        state.seconds = og;
+                        state.seconds = val;
                       
                         break;
                     case state.seconds[state.current] === 0 && state.current === 1 : 
                         state.current = 0; 
-                        state.seconds = og;
+                        state.seconds = val;
                         startworking.play();
                         
                         break; 
                     case state.seconds[state.current] === 0 && state.current === 0 && state.pomodoroCount === 3 : 
                         state.current = 2; 
-                        state.seconds = og;
+                        state.seconds = val;
                         longbreak.play();
                         
                         break; 
                     case state.seconds[state.current] === 0 && state.current === 2 :
                         state.pomodoroCount = 0;
-                        state.seconds = og; 
+                        state.seconds = val; 
                         state.current = 0; 
                         state.seconds[state.current];
     
@@ -185,20 +185,13 @@ display.playBtn.addEventListener('click', () => {
                         end.play();
                         display.playBtn.classList.remove("disabled");
                         document.title = `End of cycle`;
-                        break;  
-                         
+                        break;          
                 }
             }
-            
-    
         } else {
             clearInterval(counter)
         }
-    
-    
     }, 1000);
-    
-    
 })
 
 display.stopBtn.addEventListener('click', () => {

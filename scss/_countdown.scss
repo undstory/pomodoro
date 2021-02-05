@@ -40,7 +40,6 @@
         background-color: $gold;
         margin-top: 2rem;
         margin-bottom: 2rem;
-    
     }
 
     &__ring {
@@ -64,8 +63,6 @@
             stroke-linecap: round;
         }
     }
-
-  
 
     &__settings, &__play, &__stop {
         margin-top: 2rem;
@@ -150,3 +147,32 @@
     }
 }
   
+@media all and (max-width: 505px) {
+    .pomodoro {
+        &__stage {
+            &--label {
+                padding: .5rem .8rem;
+                font-size: 1em;
+            }
+        }
+        &__count {
+            width: 15rem;
+            height: 15rem;
+        }
+
+        &__wrapper {
+            padding: 0;
+        }
+    }
+
+    .countdown {
+        &__time {
+            font-size: 3em;
+        }
+
+        &__state {
+            font-size: 1.5em;
+        }
+    }
+}
+

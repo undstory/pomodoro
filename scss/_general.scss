@@ -12,7 +12,6 @@ html {
 body {
     background-color: $greener;
     font-family: $text;
-    
 }
 
 .main {
@@ -21,11 +20,13 @@ body {
     position: relative;
 }
 
-
-
 footer {
     text-align: right;
-    color: $gold;
-    
+    color: $gold;  
 }
 
+@media all and (max-width: 505px) {
+    footer {
+        font-size: .7em;
+    }
+}
