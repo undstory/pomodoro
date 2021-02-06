@@ -91,6 +91,20 @@
     &__stop--link {
         color: $gold;
     }
+
+    &__back {
+       @include typicalBtn;
+        margin: 2rem 0;
+
+        &--link {
+            text-decoration: none;
+            color: inherit;
+        }
+    }
+
+    &__back {
+        display: none;
+    }
 }
 
 .countdown {
@@ -162,6 +176,10 @@
 
         &__wrapper {
             padding: 0;
+        }
+
+        &__back {
+            display: block;
         }
     }
 

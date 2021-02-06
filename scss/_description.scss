@@ -48,13 +48,7 @@
         margin: 0 auto;
     }
     &__btn {
-        background-color: $gold;
-        color: $greenest;
-        padding: .8rem 1.5rem;
-        font-size: 1.2em;
-        font-weight: bold;
-        border: none;
-        cursor: pointer;
+        @include typicalBtn;
         margin-bottom: 2rem;
     }
 

@@ -92,3 +92,9 @@
 .off {
     display: none;
 }
+
+@media all and (max-width: 768px) {
+    .settings {
+        width: 80%;
+    }
+}
