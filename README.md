@@ -20,6 +20,6 @@ Using:
 
 ## Live 
 
-pomodoro.undstory.vercel.app
+https://pomodoro.undstory.vercel.app
 
 
